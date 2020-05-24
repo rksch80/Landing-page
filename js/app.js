@@ -1,56 +1,96 @@
-const navbar = document.getElementsByTagName("nav"); // <nav>
-const navList = document.querySelector(".nav-list"); // <ul class="nav-list">
-const sections = document.getElementsByTagName("section");
+// --------- Adds <li> items to the DOM ----------
 
-document.addEventListener('DOMContentLoaded', init);
+const myList = document.getElementById('myList');
+// new list item
 
-function init(){
-  for (i = 0; i < sections.length; i++) {
-    event.preventDefault();
-    const currentSection = sections[i];
-    if (currentSection.hasAttribute("data-nav")) {
-      let link = document.createElement("a");
-      let linkTitle = currentSection.getAttribute('data-nav');
-      let linkText = document.createTextNode(linkTitle);
-      link.appendChild(linkText);
-      let currentSectionId = currentSection.getAttribute('id');
-      let linkItem = document.createElement("li");
-      linkItem.classList.add("nav-link");
-      let section_id = sections[i].getAttribute('id');
-      linkItem.onclick = function() {
-          document.getElementById(section_id).scrollIntoView({
-              behavior: 'smooth'
-          });
-      };
-      linkItem.appendChild(link);
-      navList.appendChild(linkItem);
-    }
-  }
-};
+let newListItem = document.createElement('li');
+newListItem.innerHTML = `<a href="#section1">Rice</a>
+<a href="#section2">Wheat</a>
+<a href="#section3">Maize</a>
+<a href="#section4">Sugar</a>`;
+
+myList.appendChild(newListItem);
 
 
-/*
-Add class 'active' to section when near top of viewport
-My thoughts: 1. Add Event Listener for scrolling
-2. Test if is in viewport.
-3. If so, add a class or custom behaviour activeSection.classList.add("active");
-*/
+// ------------ Adds new section to DOM -------------
 
-window.addEventListener("scroll", addActiveClass)
 
-function addActiveClass(event) {
-  // As seen here: https://vanillajstoolkit.com/helpers/isinviewport/
-  var isInViewport = function (elem) {
-  var bounding = elem.getBoundingClientRect();
-    return (
-        bounding.top >= 0 &&
-        bounding.left >= 0 &&
-        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  };
-  if (isInViewport === true) {
-    elem.classList.add("active");
-    // active class in style.css
-  }
+const newSec = document.getElementById('sections');
+// new section item
+
+let newSecItem = document.createElement('section3');
+newSecItem.innerHTML = `
+<section id="section4" data-nav="Section 4" class="your-active-class">
+      <div class="landing__container">
+        <h2>SUGAR</h2>
+        <p>Sugar is the generic name for sweet-tasting, soluble carbohydrates, many of which are used in food. Table sugar, granulated sugar, or regular sugar, refers to sucrose, a disaccharide composed of glucose and fructose. By law in the United States sucrose is the only substance which can be called "sugar" on food labels.</p>
+        <p>Simple sugars, also called monosaccharides, include glucose, fructose, and galactose. Compound sugars, also called disaccharides or double sugars, are molecules composed of two monosaccharides joined by a glycosidic bond. Common examples are sucrose (table sugar) (glucose + fructose), lactose (glucose + galactose), and maltose (two molecules of glucose). In the body, compound sugars are hydrolysed into simple sugars.</p>
+      </div>
+    </section>
+`;
+
+sections.appendChild(newSecItem);
+
+
+// ------------responsive Navigation on smaller screens -----------
+
+const navbarSwitch = document.querySelector('.navbar-toggler');
+const navbarMenu = document.querySelector('#myList');
+const navbarLinks = document.querySelectorAll('.navbar__menu a');
+
+navbarSwitch.addEventListener("click", navbarSwitchClick);
+
+function navbarSwitchClick() {
+    navbarSwitch.classList.toggle("open-navbar-toggler");
+    navbarMenu.classList.toggle("open");
 }
+
+navbarLinks.forEach(elem => elem.addEventListener("click", navbarLinkClick));
+
+function navbarLinkClick() {
+    smoothScroll(event); //calls smooth scroll function found on line 41 when nav item is clicked
+    if(navbarMenu.classList.contains("open")){ // closed navbar on smaller screens
+        navbarSwitch.click();
+    }
+}
+
+// script to create smooth scrolling for navigation
+
+// *********** window.scrollInToView()**************
+smoothScroll = (event) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href")==="#" ? "body" : event.currentTarget.getAttribute("href");
+    document.querySelector(targetId).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+
+/// script for active navigation style scroll
+
+window.addEventListener('scroll', event => {
+    let nav = document.querySelector('.navbar__menu');
+    
+    (window.scrollY >= 1) ? nav.classList.add('scroll') : nav.classList.remove('scroll');
+});
+
+
+window.addEventListener('scroll', event => {
+    let navLinks = document.querySelectorAll('nav ul li a');
+    let fromTop = window.scrollY;
+    
+    navLinks.forEach(link => {
+        let section = document.querySelector(link.hash);
+        
+        if (
+            section.offsetTop <= fromTop && 
+            section.offsetTop + section.offsetHeight > fromTop
+        ) {
+            link.classList.add('current');
+        } else {
+            link.classList.remove('current');
+        }
+    });
+});

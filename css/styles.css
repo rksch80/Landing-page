@@ -142,7 +142,7 @@ button {
 
 /* Footer Styles */
 .page__footer {
-  background: #000;
+  background: rgb(175, 221, 9);
   padding: 3em;
   color: #fff;
 }
@@ -179,7 +179,7 @@ section:nth-of-type(even) .landing__container {
 /* Circles appear to be random do to use of :nth-of-type psuedo class */
 section:nth-of-type(odd) .landing__container::before {
   content: '';
-  background: rgba(255, 255, 255, 0.187);
+  background: rgba(204, 28, 28, 0.187);
   position: absolute;
   z-index: -5;
   width: 20vh;
@@ -192,7 +192,7 @@ section:nth-of-type(odd) .landing__container::before {
 section:nth-of-type(even) .landing__container::before {
   content: '';
   background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+  background: linear-gradient(0deg, rgba(211, 140, 74, 0.1) 0%, rgba(192, 177, 177, 0.2) 100%);
   position: absolute;
   top: 3em;
   right: 3em;
@@ -222,7 +222,7 @@ section:nth-of-type(3n) .landing__container::after {
 section:nth-of-type(3n + 1) .landing__container::after {
   content: '';
   background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+  background: linear-gradient(0deg, rgba(213, 223, 24, 0.1) 0%, rgba(212, 18, 154, 0.2) 100%);
   position: absolute;
   right: 20vw;
   bottom: -5em;
@@ -240,7 +240,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
   background: rgb(0, 0, 0);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, rgba(46, 197, 43, 0.1) 0%, rgba(207, 179, 15, 0) 100%);
 }
 
 section.your-active-class .landing__container::before {
@@ -270,7 +270,7 @@ section.your-active-class .landing__container::after {
 @media(max-width: 767px) {
   .navbar__menu {
     
-      background-color: rgb(0, 42, 60);
+      background-color: rgb(60, 24, 0);
       height: 60px;
   }
   
@@ -299,7 +299,7 @@ section.your-active-class .landing__container::after {
   .navbar__menu ul li a{
       padding: 7% 9% 4% 50%;
       display: block;
-      background-color: rgba(0,13,60,1);
+      background-color: rgb(30, 211, 72);
       
       
   }

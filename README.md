@@ -2,10 +2,18 @@
 Project2-Frontend  Web Development udacity nanodegree
 
 
+This is a single page webpage utilizing Javascript for dynamic additions and smooth scroll effect. In-addition Active state navigation on scroll
 
+Installation
+No installation required
 
-The ReadMe file should have non-default text in it that is specific to this project. It doesn’t have to be thorough, but should have some basic information, and use correct markdown.
+N/A
+Usage
+N/A
+Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
---- How to add a new item to the navigation
+Please make sure to update tests as appropriate.
 
-Each Section
+License
+N/A

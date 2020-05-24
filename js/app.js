@@ -1,4 +1,4 @@
-// --------- Adds <li> items to the DOM ----------
+
 
 const myList = document.getElementById('myList');
 // new list item
@@ -10,9 +10,6 @@ newListItem.innerHTML = `<a href="#section1">Rice</a>
 <a href="#section4">Sugar</a>`;
 
 myList.appendChild(newListItem);
-
-
-// ------------ Adds new section to DOM -------------
 
 
 const newSec = document.getElementById('sections');
@@ -32,8 +29,6 @@ newSecItem.innerHTML = `
 sections.appendChild(newSecItem);
 
 
-// ------------responsive Navigation on smaller screens -----------
-
 const navbarSwitch = document.querySelector('.navbar-toggler');
 const navbarMenu = document.querySelector('#myList');
 const navbarLinks = document.querySelectorAll('.navbar__menu a');
@@ -48,15 +43,12 @@ function navbarSwitchClick() {
 navbarLinks.forEach(elem => elem.addEventListener("click", navbarLinkClick));
 
 function navbarLinkClick() {
-    smoothScroll(event); //calls smooth scroll function found on line 41 when nav item is clicked
-    if(navbarMenu.classList.contains("open")){ // closed navbar on smaller screens
+    smoothScroll(event); 
+    if(navbarMenu.classList.contains("open")){ 
         navbarSwitch.click();
     }
 }
 
-// script to create smooth scrolling for navigation
-
-// *********** window.scrollInToView()**************
 smoothScroll = (event) => {
     event.preventDefault();
     const targetId = event.currentTarget.getAttribute("href")==="#" ? "body" : event.currentTarget.getAttribute("href");
@@ -66,9 +58,6 @@ smoothScroll = (event) => {
     });
 }
 
-
-
-/// script for active navigation style scroll
 
 window.addEventListener('scroll', event => {
     let nav = document.querySelector('.navbar__menu');
